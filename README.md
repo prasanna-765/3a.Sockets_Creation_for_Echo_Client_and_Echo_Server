@@ -1,68 +1,42 @@
-# 2c.SIMULATING ARP /RARP PROTOCOLS
-PRASANNA A
-212223220078
-B Tech IT
-## AIM
-To write a python program for simulating ARP protocols using TCP.
+# 3a.CREATION FOR ECHO CLIENT AND ECHO SERVER USING TCP SOCKETS
+# AIM
+To write a python program for creating Echo Client and Echo Server using TCP
+Sockets Links.
 ## ALGORITHM:
-## Client:
-1. Start the program
-2. Using socket connection is established between client and server.
-3. Get the IP address to be converted into MAC address.
-4. Send this IP address to server.
-5. Server returns the MAC address to client.
-## Server:
-1. Start the program
-2. Accept the socket which is created by the client.
-3. Server maintains the table in which IP and corresponding MAC addresses are
-stored.
-4. Read the IP address which is send by the client.
-5. Map the IP address with its MAC address and return the MAC address to client.
+1. Import the necessary modules in python
+2. Create a socket connection to using the socket module.
+3. Send message to the client and receive the message from the client using the Socket module in
+ server .
+4. Send and receive the message using the send function in socket.
+## PROGRAM
+## CLIENT
+```
+import socket 
+s=socket.socket() 
+s.connect(('localhost',8000)) 
+while True: 
+    msg=input("Client > ") 
+    s.send(msg.encode()) 
+    print("Server > ",s.recv(1024).decode())  
+```
+## SERVER
+```
+import socket 
+s=socket.socket() 
+s.bind(('localhost',8000)) 
+s.listen(5) 
+c,addr=s.accept() 
+while True: 
+    ClientMessage=c.recv(1024).decode() 
+    c.send(ClientMessage.encode()) 
+```
+## OUPUT
+## CLIENT
+![image](https://github.com/JayaAbirami/3a.Sockets_Creation_for_Echo_Client_and_Echo_Server/assets/151487010/8f8c4cb4-b1b1-4b73-87e8-e15da76315a4)
 
-## PROGRAM - ARP
-import socket
-
-s=socket.socket()
-
-s.bind(('localhost',8000))
-
-s.listen(5)
-
-c,addr=s.accept()
-
-address={"165.165.80.80":"6A:08:AA:C2","165.165.79.1":"8A:BC:E3:FA"}
-
-while True:
-
-   ip=c.recv(1024).decode()
-    
-  try:
-    
-  c.send(address[ip].encode())
-    
-   except KeyError:
-    
-  c.send("Not Found".encode())
-  
-## OUPUT - ARP
-![Screenshot 2024-02-27 143756](https://github.com/aswethaashok/2c.ARP_RARP_PROTOCOLS/assets/149987410/9c6b0cea-6ddf-467e-8a84-c342616eebe5)
-
-## PROGRAM - RARP
-import socket
-
-s=socket.socket()
-
-s.connect(('localhost',8000))
-
-while true:
-
- print(s.recv(1024.decode())
- 
- s.send("acknowledgement received from the server.endcode())
-
-## OUPUT -RARP
-![Screenshot 2024-02-27 143810](https://github.com/aswethaashok/2c.ARP_RARP_PROTOCOLS/assets/149987410/7a82001b-1baf-4643-9bb0-75a95d218c21)
+## SERVER
+![image](https://github.com/JayaAbirami/3a.Sockets_Creation_for_Echo_Client_and_Echo_Server/assets/151487010/dae85d60-1107-4dd4-adb9-6094c58ec74a)
 
 ## RESULT
-Thus, the python program for simulating ARP protocols using TCP was successfully 
-executed.
+Thus, the python program for creating Echo Client and Echo Server using TCP Sockets Links 
+was successfully created and executed.
